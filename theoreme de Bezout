@@ -1,0 +1,53 @@
+#include <iostream>
+#include <cmath>  //Ne pas oublier cette ligne
+using namespace std;
+
+int main()
+{
+
+    bool iterer(true),recommencer(true);
+    while(recommencer)
+    {
+
+        int a,b,c,ua,ub,va,vb,wa,wb,p,a0,b0;
+        cout << "a=?"<<endl;
+        cin>> a;
+        cout<<"b=?"<<endl;
+        cin>>b;
+        iterer=true;
+        while(iterer)
+        {
+            a0=a;
+            b0=b;
+            ua=1;
+            vb=1;
+            ub=0;
+            va=0;
+            c=1;
+
+            while(c!=0)
+            {
+                c=a%b;
+                p=a/b;
+                wa=ua-p*va;
+                wb=ub-p*vb;
+                a=b;
+                b=c;
+                ua=va;
+                ub=vb;
+                va=wa;
+                vb=wb;
+            }
+            cout<<ua<<" * "<<a0<<" + "<<ub<<" * "<<b0<<" = "<<ua*a0+ub*b0<<endl;
+            if((a0==0) | (b0==0)) iterer=false;
+            a=ua;
+            b=ub;
+            //iterer=false; //itérer ou stopper BEZOUT
+        }
+        cout<<"Recommencer ? " <<endl;
+        cin.ignore();
+        cin>>recommencer;
+    }
+    cout<<"BEZOUT" <<endl;
+    return 0;
+}
